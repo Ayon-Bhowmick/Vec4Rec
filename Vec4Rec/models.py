@@ -8,9 +8,9 @@ class Space:
 
 @dataclass(eq=False, order=False, match_args=False)
 class Point:
-    space: Space
     id: int
     cords: list[float] = None
+    space: Space
 
     def __post_init__(self) -> None:
         if self.cords:
@@ -20,7 +20,7 @@ class Point:
             self.cords = [randint(-self.space.size, self.space.size - 1) + random() for _ in range(self.space.dim)]
 
     def __str__(self) -> str:
-        return f"{self.id}"
+        return str(self.id)
 
     def __eq__(self, __value: object) -> bool:
         return self.cords == __value.cords
