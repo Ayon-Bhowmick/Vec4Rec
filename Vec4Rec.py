@@ -8,22 +8,16 @@ class Space:
 
 @dataclass
 class Point:
+    space: Space
     id: int
-    cords: list[float]
+    cords: list[float] = None
 
-class Vec4Rec:
-    def __init__(self, dim, size_of_space):
-        self.dim = dim
-        self.points = []
-        self.size_of_space = size_of_space
-
-    def place_point(self, id: int = None, cords: list[float] = None):
-        if cords:
-            if len(cords) == self.dim:
+    def __post_init__(self):
+        if self.cords:
+            if len(self.cords) == self.space.dim:
                 raise ValueError("Invalid number of dimensions")
         else:
-            cords = [randint(-self.size_of_space, self.size_of_space - 1) + random() for _ in range(self.dim)]
+            self.cords = [randint(-self.space.size, self.space.size - 1) + random() for _ in range(self.space.dim)]
 
-
-v = Vec4Rec(4, 100)
-v.place_point()
+    def __str__(self):
+        return f"{self.id}"
