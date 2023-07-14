@@ -9,8 +9,8 @@ class Space:
 @dataclass(eq=False, order=False, match_args=False)
 class Point:
     id: int
-    cords: list[float] = None
     space: Space
+    cords: list[float] = None
 
     def __post_init__(self) -> None:
         if self.cords:
