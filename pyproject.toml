@@ -1,0 +1,17 @@
+[project]
+name = "Vec4Rec"
+version = "0.0.1"
+authors = [
+  { name="Ayon Bhowmick", email="ayonbhowmick2002@gmail.com" },
+]
+description = "Uses gradent decent based algorithems on a vector space to preform user to user recomendations"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Ayon-Bhowmick/Vec4Rec"
