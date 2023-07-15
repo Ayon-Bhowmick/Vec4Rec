@@ -1,5 +1,5 @@
 import unittest
-from .. import Vec4Rec
+import src.models as models
 
 class ModelTest(unittest.TestCase):
     """
