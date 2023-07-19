@@ -1,5 +1,8 @@
 from random import randint, random
 from dataclasses import dataclass
+from typing import List
+
+Vector = List[float]
 
 @dataclass(eq=False, order=False, match_args=False)
 class Space:
@@ -10,7 +13,7 @@ class Space:
 class Point:
     id: int
     space: Space
-    cords: list[float] = None
+    cords: Vector = None
 
     def __post_init__(self) -> None:
         if self.cords:

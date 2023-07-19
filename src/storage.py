@@ -4,13 +4,13 @@ import sqlite3
 
 class Storage:
     def __init__(self):
-        self.conn = sqlite3.connect('v_store.db')
-        self.cursor = self.conn.cursor()
-        self.queries: dict[str, str] = self.read_queries()
+        self._conn = sqlite3.connect('v_store.db')
+        self._cursor = self._conn.cursor()
+        self._queries: dict[str, str] = self.read_queries()
 
     def __del__(self):
-        self.cursor.close()
-        self.conn.close()
+        self._cursor.close()
+        self._conn.close()
 
     def read_queries(self) -> dict[str, str]:
         queries = {}
