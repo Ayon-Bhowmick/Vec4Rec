@@ -30,6 +30,9 @@ class Storage:
             queries[current_key] = "\n".join(current_query)
         return queries
 
+    # def make_table(self):
+
+
 
 
 def place_point(point: models.Point, space: models.Space):

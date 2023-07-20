@@ -25,5 +25,11 @@ class Point:
     def __str__(self) -> str:
         return str(self.id)
 
+    def __repr__(self) -> str:
+        return str(self.cords)
+
     def __eq__(self, __value: object) -> bool:
         return self.cords == __value.cords
+
+x = Point(1, Space(1000000, 10))
+print(len(repr(x)))
