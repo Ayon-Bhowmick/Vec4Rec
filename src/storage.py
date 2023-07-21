@@ -38,17 +38,6 @@ class Storage:
             print(e)
             return 1
 
+    def add_point(self, point: models.Point) -> int:
+        query = self._queries["add_point"].format(str(point), repr(point))
 
-
-def place_point(point: models.Point, space: models.Space):
-    """
-    places a point into storage
-    """
-    with open("store.txt", "a") as f:
-        _write_point(f, point)
-
-def _write_point(f: typing.TextIO, point: models.Point):
-    """
-    writes a point to a file
-    """
-    f.write(f"{point.id}: ")
