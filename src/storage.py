@@ -30,8 +30,13 @@ class Storage:
             queries[current_key] = "\n".join(current_query)
         return queries
 
-    # def make_table(self):
-
+    def make_table(self) -> int:
+        try:
+            self._cursor.execute(self._queries["make_vector_table"])
+            return 0
+        except Exception as e:
+            print(e)
+            return 1
 
 
 
