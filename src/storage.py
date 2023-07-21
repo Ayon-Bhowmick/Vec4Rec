@@ -35,21 +35,24 @@ class Storage:
             self._cursor.execute(self._queries["make_vector_table"])
             return 0
         except Exception as e:
-            print(e)
-            return 1
+            raise e
 
     def add_point(self, point: models.Point) -> int:
         try:
             query = self._queries["add_point"].format(str(point), repr(point))
             self._cursor.execute(query)
             return 0
-        except:
-            return 1
+        except Exception as e:
+            raise e
 
-    def get_point(self, id) -> int:
+    def get_point(self, id) -> int | models.Vector:
         try:
             query = self._queries["get_point_by_id"].format(id)
             self._cursor.execute(query)
-            return self._cursor.fetchone()
-        except:
-            return 1
+            vec: models.Vector =  self._cursor.fetchone()
+            if vec:
+                return exec(vec)
+            else:
+                raise ValueError("Point with that id does not exist")
+        except Exception as e:
+            raise e
