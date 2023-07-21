@@ -39,5 +39,9 @@ class Storage:
             return 1
 
     def add_point(self, point: models.Point) -> int:
-        query = self._queries["add_point"].format(str(point), repr(point))
-
+        try:
+            query = self._queries["add_point"].format(str(point), repr(point))
+            self._cursor.execute(query)
+            return 0
+        except:
+            return 1
