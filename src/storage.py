@@ -45,3 +45,11 @@ class Storage:
             return 0
         except:
             return 1
+
+    def get_point(self, id) -> int:
+        try:
+            query = self._queries["get_point_by_id"].format(id)
+            self._cursor.execute(query)
+            return self._cursor.fetchone()
+        except:
+            return 1
