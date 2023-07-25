@@ -7,3 +7,6 @@ CREATE TABLE IF NOT EXISTS vector_table (
 SELECT vector
 FROM vector_table
 WHERE id = {0};
+-- delete_point_by_id
+DELETE FROM vector_table
+WHERE id = {0};

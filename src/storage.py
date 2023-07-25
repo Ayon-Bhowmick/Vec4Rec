@@ -1,12 +1,18 @@
-import models
+from . import models
 import typing
 import sqlite3
+import os
+import logging
+import sys
 
 class Storage:
     def __init__(self):
         self._conn = sqlite3.connect('v_store.db')
         self._cursor = self._conn.cursor()
         self._queries: dict[str, str] = self.read_queries()
+        logging.basicConfig(stream=sys.stdout)
+        logging.getLogger("[storage]").setLevel(logging.DEBUG)
+        self.log = logging.getLogger("[storage]")
 
     def __del__(self):
         self._cursor.close()
@@ -16,7 +22,8 @@ class Storage:
         queries = {}
         current_key = None
         current_query = []
-        with open("queries.sql", "r") as f:
+        self.log(os.path.dirname(os.path.realpath(__file__)))
+        with open("./queries.sql", "r") as f:
             for line in f:
                 line = line.strip()
                 if line.startswith("--"):
@@ -54,5 +61,13 @@ class Storage:
                 return exec(vec)
             else:
                 raise ValueError("Point with that id does not exist")
+        except Exception as e:
+            raise e
+
+    def delete_point(self, id) -> int:
+        try:
+            query = self._queries["delete_point_by_id"].format(id)
+            self._cursor.execute(query)
+            return 0
         except Exception as e:
             raise e
