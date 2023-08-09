@@ -1,4 +1,4 @@
-from . import models
+import models
 import typing
 import sqlite3
 import os
@@ -22,7 +22,7 @@ class Storage:
         queries = {}
         current_key = None
         current_query = []
-        self.log(os.path.dirname(os.path.realpath(__file__)))
+        self.log.debug(os.path.dirname(os.path.realpath(__file__)))
         with open("./queries.sql", "r") as f:
             for line in f:
                 line = line.strip()
@@ -71,3 +71,6 @@ class Storage:
             return 0
         except Exception as e:
             raise e
+
+s = Storage()
+print(s.read_queries())
