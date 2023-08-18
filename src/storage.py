@@ -2,7 +2,6 @@ import models
 import typing
 import sqlite3
 import os
-import logging
 import sys
 
 class Storage:
@@ -10,9 +9,6 @@ class Storage:
         self._conn = sqlite3.connect('v_store.db')
         self._cursor = self._conn.cursor()
         self._queries: dict[str, str] = self.read_queries()
-        logging.basicConfig(stream=sys.stdout)
-        logging.getLogger("[storage]").setLevel(logging.DEBUG)
-        self.log = logging.getLogger("[storage]")
 
     def __del__(self):
         self._cursor.close()
@@ -22,7 +18,6 @@ class Storage:
         queries = {}
         current_key = None
         current_query = []
-        self.log.debug(os.path.dirname(os.path.realpath(__file__)))
         with open("./queries.sql", "r") as f:
             for line in f:
                 line = line.strip()
